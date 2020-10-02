@@ -61,7 +61,11 @@ public class AddBook {
 		}
 	}
 	
-	public void editContact(String firstName, String lastName) {
+	public void editContact() {
+		System.out.println("Enter First Name :");
+    	String firstName = in.next();
+    	System.out.println("Enter Last Name :");
+    	String lastName = in.next();
 		String name = firstName+" "+lastName;
 		boolean matchFound = false;
 		Boolean keyPresent = contactMap.containsKey(name);
@@ -122,5 +126,32 @@ public class AddBook {
 				System.out.println(person);
 			}
 		
+	}
+	public void showDetail() {
+		if(contactMap.size() == 0)
+			System.out.println("No contacts to show");
+		else {
+			Set set = contactMap.entrySet();
+			Iterator iterator = set.iterator();
+			while(iterator.hasNext()) {
+				Map.Entry entry = (Map.Entry)iterator.next();
+				System.out.println(entry.getValue());
+			}
+		}
+	}
+	public void deleteContact() {
+		System.out.println("Enter First Name :");
+    	String firstName = in.next();
+    	System.out.println("Enter Last Name :");
+    	String lastName = in.next();
+		String name = firstName+" "+lastName;
+		Boolean keyPresent = contactMap.containsKey(name);
+		if (keyPresent) {
+			Contacts c = contactMap.get(name);
+			contactList.remove(c);
+			contactMap.remove(name);
+		} else {
+			System.out.println("This name is not present in address book.");
+		}
 	}
 }
