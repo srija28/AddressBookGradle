@@ -11,7 +11,8 @@ public class AddressBook {
 		System.out.println("Enter 1 to add contact");
 		System.out.println("Enter 2 to edit contact");
 		System.out.println("Enter 3 to see addressbook details");
-		System.out.println("Enter 4 to exit");
+		System.out.println("Enter 4 to delete contact");
+		System.out.println("Enter 5 to exit");
 		int option = sc.nextInt();
 		while (option != 5) {
 			if (option == 1)
@@ -19,7 +20,7 @@ public class AddressBook {
 			else if (option == 2) {
 				addressbook.editContact();
 			} else if (option == 3)
-				addressbook.showDetails();
+				addressbook.showDetail();
 			else if(option == 4)
 				addressbook.deleteContact();
 			else if (option == 5)
