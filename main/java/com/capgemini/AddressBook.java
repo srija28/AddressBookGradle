@@ -1,54 +1,33 @@
 package com.capgemini;
 
+
 import java.util.*;
 
 public class AddressBook {
 	public static void main(String[] args) {
+	AddBook addressbook = new AddBook();
+	Scanner sc = new Scanner(System.in);
+	boolean matchFound = false;
+	System.out.println("Welcome to Addressbook");System.out.println("Enter 1 to add contact");System.out.println("Enter 2 to edit contact");System.out.println("Enter 3 to see addressbook details");System.out.println("Enter 4 to exit");
+	int option = sc.nextInt();while(option!=4)
+	{
+		if (option == 1)
+			addressbook.addNewContact();
+		else if (option == 2) {
+			System.out.println("Enter First Name :");
+			String firstName = sc.next();
+			System.out.println("Enter Last Name :");
+			String lastName = sc.next();
+			addressbook.editContact(firstName, lastName);
+		} else if (option == 3)
+			addressbook.showDetails();
+		else if (option == 4)
+			break;
+		else {
+			System.out.println("Please Enter Correct Choice");
 
-		Scanner sc = new Scanner(System.in);
-		boolean matchFound = false;
-		System.out.println("Welcome to Addressbook");
-
-		Contacts person = new Contacts();
-		System.out.print("First Name: ");
-		while (!matchFound) {
-			matchFound = person.setFirstName(sc.next());
 		}
-		matchFound = false;
-		System.out.print("Last Name: ");
-		while (!matchFound) {
-			matchFound = person.setLastName(sc.next());
-		}
-		matchFound = false;
-		System.out.print("Address: ");
-		while (!matchFound) {
-			matchFound = person.setAddress(sc.next());
-		}
-		matchFound = false;
-		System.out.print("City: ");
-		while (!matchFound) {
-			matchFound = person.setCity(sc.next());
-		}
-		matchFound = false;
-		System.out.print("State: ");
-		while (!matchFound) {
-			matchFound = person.setState(sc.next());
-		}
-		matchFound = false;
-		System.out.print("Zip: ");
-		while (!matchFound) {
-			matchFound = person.setZip(sc.next());
-		}
-		matchFound = false;
-		System.out.print("Phone Number: ");
-		while (!matchFound) {
-			matchFound = person.setPhoneNo(sc.next());
-		}
-		matchFound = false;
-		System.out.print("Email: ");
-		while (!matchFound) {
-			matchFound = person.setEmail(sc.next());
-		}
-		System.out.println("Thank You");
-	}
-}
+		System.out.println("Enter Choice");
+		option = sc.nextInt();
+	}System.out.println("Thank You");
+}}
