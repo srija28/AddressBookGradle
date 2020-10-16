@@ -1,11 +1,12 @@
 package com.capgemini;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import com.capgemini.Contacts;
 
 public class AddBook {
 	Scanner in = new Scanner(System.in);
-	
+	static LinkedList<Contacts> contactList = new LinkedList<>();
 	Map<String, Contacts> contactMap = new HashMap<>();
 	
 	public AddBook() {
@@ -146,5 +147,13 @@ public class AddBook {
 		} else {
 			System.out.println("This name is not present in address book.");
 		}
+	}
+	
+	public List<Contacts> searchPersonsByCity(String city) {
+		return contactList.stream().filter(person -> person.getCity().equals(city)).collect(Collectors.toList());
+	}
+
+	public List<Contacts> searchPersonsByState(String state) {
+		return contactList.stream().filter(person -> person.getState().equals(state)).collect(Collectors.toList());
 	}
 }

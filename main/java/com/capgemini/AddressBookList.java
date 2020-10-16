@@ -4,7 +4,7 @@ import java.util.*;
 public class AddressBookList {
 	Scanner in = new Scanner(System.in);
 	 Map<String, AddBook> addressBookMap = new TreeMap<>();
-	 
+	 ArrayList<AddBook> addressList = new ArrayList<>();
 	 public AddressBookList() {
 			addressBookMap = new TreeMap<>();
 		}
@@ -54,6 +54,19 @@ public void newAddressBook() {
 	else
 		addressBookMap.put(bookName, addressBook);
 	
+}
+public void showDetails() {
+	
+	if(addressBookMap.size() == 0)
+		System.out.println("No Address Book is present");
+	else {
+		for (int i = 0; i < addressList.size(); i++) {
+			AddBook addBook = addressList.get(i);
+			addBook.showDetail();
+	}
+}
+
+
 }
 }
 
