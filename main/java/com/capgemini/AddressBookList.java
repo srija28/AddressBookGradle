@@ -1,5 +1,6 @@
 package com.capgemini;
 import java.util.*;
+import java.util.stream.*;
 
 public class AddressBookList {
 	Scanner in = new Scanner(System.in);
