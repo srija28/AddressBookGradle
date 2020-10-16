@@ -17,7 +17,11 @@ public class AddressBook {
 			System.out.println("Enter 4 to search persons in a state");
 			System.out.println("Enter 5 to count persons in a state");
 			System.out.println("Enter 6 to count persons in a city");
-			System.out.println("Enter 7 to exit");
+			System.out.println("Enter 7 to sort persons by city");
+			System.out.println("Enter 8 to sort persons by state");
+			System.out.println("Enter 9 to sort persons by zip");
+			System.out.println("Enter 10 to see all addressbooks");
+			System.out.println("Enter 11 to exit");
 			option =sc.nextInt();
 			if (option == 1)
 				addressBookList.openAddressBook();
@@ -42,7 +46,19 @@ public class AddressBook {
 				String city = sc.next();
 				System.out.println(addressbook.countPersonsByCity(city));
 			}
-			else if (option == 7)
+			else if (option == 7) {
+				System.out.println(addressbook.sortPersonsByCity());
+			}
+			else if(option == 8) {
+				System.out.println(addressbook.sortPersonsByState());
+			}
+			else if(option == 9) {
+				System.out.println(addressbook.sortPersonsByZip());
+			}
+			else if(option == 10) {
+				addressBookList.showDetails();
+			}
+			else if (option == 11)
 				break;
 			else {
 				System.out.println("Please Enter Correct Choice");

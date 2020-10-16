@@ -61,9 +61,14 @@ public void showDetails() {
 	if(addressBookMap.size() == 0)
 		System.out.println("No Address Book is present");
 	else {
-		for (int i = 0; i < addressList.size(); i++) {
-			AddBook addBook = addressList.get(i);
-			addBook.showDetail();
+		Set set = addressBookMap.entrySet();
+		Iterator iterator = set.iterator();
+		while (iterator.hasNext()) {
+			Map.Entry entry = (Map.Entry) iterator.next();
+			System.out.println("---------------");
+			System.out.println("Address Book : " + entry.getKey());
+			AddBook addressBook = (AddBook) entry.getValue();
+			((AddBook) entry.getValue()).showDetail();
 	}
 }
 
