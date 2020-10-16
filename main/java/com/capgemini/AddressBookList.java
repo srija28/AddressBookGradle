@@ -35,8 +35,7 @@ public class AddressBookList {
      else if(option == 5)
      	break;
      else
-     System.out.println("Please Enter Correct Choice"); 
-     
+     System.out.println("Please Enter Correct Choice");  
      System.out.println("Enter Choice");
      option = in.nextInt();
      }
