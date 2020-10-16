@@ -15,9 +15,11 @@ public class AddressBook {
 		System.out.println("Enter 2 to open new address book");
 		System.out.println("Enter 3 to search persons in a city");
 		System.out.println("Enter 4 to search persons in a state");
-		System.out.println("Enter 5 to exit");
+		System.out.println("Enter 5 to count persons in a state");
+		System.out.println("Enter 6 to count persons in a city");
+		System.out.println("Enter 7 to exit");
 		int option = sc.nextInt();
-		while (option != 4) {
+		while (option != 7) {
 			if (option == 1)
 				addressBookList.openAddressBook();
 			else if (option == 2) {
@@ -31,11 +33,28 @@ public class AddressBook {
 				String state = sc.next();
 				System.out.println(addressbook.searchPersonsByState(state));
 			}
-			else if(option==5)
+			else if(option==5) {
+				System.out.println("Enter State");
+				String state = sc.next();
+				System.out.println(addressbook.countPersonsByState(state));
+			}
+			else if(option == 6) {
+				System.out.println("Enter City");
+				String city = sc.next();
+				System.out.println(addressbook.countPersonsByCity(city));
+			}
+			else if (option == 7)
 				break;
 			else {
 				System.out.println("Please Enter Correct Choice");
 			}
+			System.out.println("Enter 1 to open existing addressbook");
+			System.out.println("Enter 2 to open new addressbook");
+			System.out.println("Enter 3 to search persons in a city");
+			System.out.println("Enter 4 to search persons in a state");
+			System.out.println("Enter 5 to count persons in a state");
+			System.out.println("Enter 6 to count persons in a city");
+			System.out.println("Enter 7 to exit");
 			System.out.println("Enter Choice");
 			option = sc.nextInt();
 		}
