@@ -4,6 +4,22 @@ public class Contacts {
 	private String firstName, lastName, name, address, city, state, zip, phoneNo, email;
 
 	ValidateContact validateContact = new ValidateContact();
+	
+	public Contacts() {
+
+	}
+	
+	public Contacts(String firstName, String lastName, String address, String city, String state, String zip,
+			String phoneNo, String email) {
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setAddress(address);
+		this.setCity(city);
+		this.setState(state);
+		this.setZip(zip);
+		this.setPhoneNo(phoneNo);
+		this.setEmail(email);
+	}
 
 	public String getFirstName() {
 		return firstName;
