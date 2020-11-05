@@ -30,7 +30,13 @@ public class AddressBookDBTest {
     	boolean result = service.checkAddressBookDataInSyncWithDB("shreya","cen");
 		Assert.assertTrue(result);
     }
-
+	@Test
+ 	public void givenContactsData_WhenCountByState_ShouldReturnProperValue() {
+ 		AddressBookService service = new AddressBookService();
+ 		service.readAddressBookData(IOService.DB_IO);
+ 		Map<String, Integer> countContactsByState = service.readCountContactsByState(IOService.DB_IO);
+ 		Assert.assertTrue(countContactsByState.get("telangana").equals(3));
+ 	}
 
 	
 }
