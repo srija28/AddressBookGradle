@@ -1,11 +1,16 @@
 package com.capgemini;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import org.junit.Assert;
+
+import com.capgemini.AddressBookData;
+import com.capgemini.AddressBookService;
+import com.capgemini.AddressBookService.IOService;
 
 public class AddressBookDBTest {
 
@@ -16,10 +21,16 @@ public class AddressBookDBTest {
 		addressBookDBService = new AddressBookDBService();
 	}
 
-	@Test
-	public void givenAddressBookDB_ShouldMatchCount() throws AddressBookDBException {
-		List<Contacts> contactList = addressBookDBService.readContacts();
-		Assert.assertEquals(7, contactList.size());
-	}
+	
+	@Test 
+    public void givenNewCity_WhenUpdated_shouldMatchWithDB() {
+    	AddressBookService service = new AddressBookService();
+    	service.readAddressBookData(IOService.DB_IO);
+    	service.updateContactsCity("shreya", "cen");
+    	boolean result = service.checkAddressBookDataInSyncWithDB("shreya","cen");
+		Assert.assertTrue(result);
+    }
+
+
 	
 }
