@@ -16,7 +16,9 @@ public class AddressBookDBService {
 		String jdbcURL = "jdbc:mysql://localhost:3306/addressbook_service?allowPublicKeyRetrieval=true&&useSSL=false";
 		String userName = "root";
 		String password = "Shreya@57";
+		//Class.forName("com.mysql.jdbc.Driver");
 		try {
+			
 			return DriverManager.getConnection(jdbcURL, userName, password);
 		} catch (SQLException e) {
 			throw new AddressBookDBException(AddressBookDBException.ExceptionType.CONNECTION_ERROR, e.getMessage());
@@ -40,9 +42,9 @@ public class AddressBookDBService {
 		List<Contacts> contactList = new ArrayList<Contacts>();
 		try {
 			while(result.next()) {
-				String firstName = result.getString("first_name");
+				String firstName = result.getString("firstname");
 				String lastName = result.getString("last_name");
-				String address = result.getString("street");
+				String address = result.getString("address");
 				String city = result.getString("city");
 				String state = result.getString("state");
 				String zip = result.getString("zip");

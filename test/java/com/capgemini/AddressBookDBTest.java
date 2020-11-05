@@ -21,4 +21,5 @@ public class AddressBookDBTest {
 		List<Contacts> contactList = addressBookDBService.readContacts();
 		Assert.assertEquals(7, contactList.size());
 	}
+	
 }
