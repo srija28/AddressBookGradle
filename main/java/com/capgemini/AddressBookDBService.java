@@ -2,6 +2,8 @@ package com.capgemini;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -98,52 +100,20 @@ public class AddressBookDBService {
  		return cityToContactsMap;
  	}
 
- 	public Map<String, Integer> getCountByState() {
- 		String sql = "SELECT state, COUNT(state) AS count_state FROM addressbook GROUP BY state";
- 		Map<String, Integer> stateToContactsMap = new HashMap<>();
- 		try(Connection connection = this.getConnection()) {
- 			Statement statement = connection.createStatement();
- 			ResultSet result = statement.executeQuery(sql);
- 			while(result.next()) {
- 				String state = result.getString("state");
- 				int count = result.getInt("count_state");
- 				stateToContactsMap.put(state, count);
- 			}
- 		}
- 		catch(SQLException e) {
- 			e.printStackTrace();
- 		}
- 		return stateToContactsMap;
- 	}
- 	public AddressBookData addContact(String firstname, String last_name, String address, String city, String state,
- 			String zipcode, String phone, String email) {
- 		AddressBookData addBookData = null;
- 		String sql = String.format("INSERT INTO addressbook(firstname, last_name, address, city, state, zip, phone,email) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", firstname, last_name, address, city, state, zipcode, phone, email);
- 		try(Connection connection = this.getConnection()) {
- 			Statement statement = connection.createStatement();
- 			int rowAffected = statement.executeUpdate(sql, statement.RETURN_GENERATED_KEYS);
- 			if(rowAffected == 1) {
- 				ResultSet result = statement.getGeneratedKeys();
- 				if(result.next()) {
-
- 					String fname = result.getString("firstname");
- 					String lname = result.getString("last_name");
- 					String address1 = result.getString("address");
- 					String city1 = result.getString("city");
- 					String state1 = result.getString("state");
- 					String zip = result.getString("zip");
- 					String phoneno = result.getString("phone");
- 					String email1 = result.getString("email");
- 					addBookData = new AddressBookData(fname, lname, address1, city1, state1, zip, phoneno, email1);
- 				}
- 			}
-
- 		}
- 		catch(SQLException e) {
- 			e.printStackTrace();
- 		}
- 		return addBookData;
-
-
- 	}
+	public int getContactsOnDateRange(LocalDate startDate, LocalDate endDate) throws AddressBookDBException{
+		
+		String sql = String.format("SELECT firstname FROM addressbook WHERE start BETWEEN '%s' AND '%s';",
+				Date.valueOf(startDate), Date.valueOf(endDate));
+		int noOfContacts = 0;
+		try (Connection connection = getConnection()) {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+				noOfContacts++;
+			}
+		} catch (SQLException e) {
+			throw new AddressBookDBException(AddressBookDBException.ExceptionType.CONNECTION_ERROR, e.getMessage());
+		}
+		return noOfContacts;
+	}	
 }

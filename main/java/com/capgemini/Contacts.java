@@ -1,9 +1,12 @@
 package com.capgemini;
+import java.time.LocalDate;
 
 public class Contacts {
 	private String firstName, lastName, name, address, city, state, zip, phoneNo, email;
 
 	ValidateContact validateContact = new ValidateContact();
+	
+	private LocalDate startDate;
 	
 	public Contacts() {
 
@@ -20,6 +23,20 @@ public class Contacts {
 		this.setPhoneNo(phoneNo);
 		this.setEmail(email);
 	}
+	
+	public Contacts(String firstName, String lastName, String address, String city, String state, String zip,
+ 			String phoneNo, String email, LocalDate startDate) {
+ 		this(firstName, lastName, address, city, state, zip, phoneNo, email);
+ 		this.startDate = startDate;
+ 	}
+	
+	public LocalDate getStartDate() {
+ 		return startDate;
+ 	}
+
+ 	public void setStartDate(LocalDate startDate) {
+ 		this.startDate = startDate;
+ 	}
 
 	public String getFirstName() {
 		return firstName;
@@ -114,5 +131,15 @@ public class Contacts {
 		return "First Name :" + firstName + "\nLast Name :" + lastName + "\nAddress :" + address + "\nCity :" + city
 				+ "\nState :" + state + "\nZip :" + zip + "\nPhoneNo :" + phoneNo + "\nEmail :" + email;
 	}
+	@Override
+ 	public boolean equals(Object o) {
+ 		if (this == o) return true;
+ 		if (o == null || getClass() != o.getClass()) return false;
+ 	    Contacts that = (Contacts) o;
+ 		return this.firstName == that.firstName && this.lastName == that.lastName
+ 				&& this.address == that.address && this.city == that.city && this.state == that.state
+ 				&& this.zip == that.zip && this.phoneNo == that.phoneNo && this.email == that.email;
+ 	}
+
 
 }
